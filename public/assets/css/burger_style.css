@@ -1,0 +1,39 @@
+body{
+    background-color: #ffffff;
+    font-size: 20px;
+}
+
+/* <--! button hidden --!> */
+/* #hidden{
+    
+} */
+
+li{
+    font-size: 12px;
+    /* background-color: #08DFE2;
+    border: 5px, solid, #08DFE2; */
+    text-align: left;
+
+}
+
+h1{
+    text-align: center;
+    color: #08DFE2;
+}
+#style{
+    background-color: #ffffff;
+    margin-top:10px;
+    padding: 10px;
+}
+
+h4{
+    text-decoration: underline;
+    text-align: center;
+}
+.buttonstyle{
+    display: inline-block;
+}
+.menu{
+    border: 10px, solid, #ffffff;
+    min-height: 50px;
+}
