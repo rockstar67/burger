@@ -10,6 +10,14 @@ router.get('/', function(req,res){
     
 })
 
+router.put('/burgers/update', function(req,res){
+    burger.update(req.body.burger_id, function(result){
+        console.log(result);
+        res.redirect('/');
+    });
+
+});
+
 module.exports = router;
 
 
