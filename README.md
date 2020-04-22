@@ -1,6 +1,6 @@
 # burger
 
-* Portfolio:  https://rockstar67.github.io/burger/
+* Portfolio:  
 * Heroku:
 
 # Technologies Used
