@@ -3,12 +3,13 @@
 }
 body{
     
-    background: url("../img/burger.jpg");
+    background: url("../img/burger3.png");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover; 
     width: 100%;
+
     
 }
 header{
