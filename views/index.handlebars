@@ -1,49 +1,82 @@
 <div class="container">
+    <header>
+        <h1 class="text-center"><i class="fas fa-hamburger"></i> Eat Da Burger !</h1>
+    </header>
+
+    {{!-- FORM --}}
+    <form class="text-center mx-auto col-6">
+        <div class="form-group">
+            <input type="text" class="form-control" id="inputBurger">
+        </div>
+        <button id="submit" type="submit" class="btn btn-warning">Submit</button>
+        <p style="color:gray">Enter a burger you want to eat Click the "Submit" button</p>
+    </form>
+
+    
+
+    {{!-- not devoured --}}
     <div class="row">
-        <div class="col-xs-12 text-center" id="top-bar">
-            <h1>EAT DA BURGER!</h1>
-        </div>
-        <div class="col-xs-6 text-center" class="task">
-            <div class="row">
-                {{#each burger_data}}
-                    {{#unless this.devoured}}
-                <div class="col-xs-9 text-center">
-                    <pre>{{this.id}}. {{this.burger_name}}</pre>
-                </div>
-            <div class="col-xs-3 text-center">
-                    <form method="POST" action="burgers/update?_method=PUT" 
-                    class="button-size">
-                        <input type="hidden" name="burger_id" type="text"
-                        value={{this.id}}>
-                        <br>
-                        <button type="submit" class="btn btn-default">DEVOUR IT!</button>
-                    </form>
-                </div>
+        <div id="devourFalse" class="col-6">
+            <ul class="list-group">
+            {{#each bugers}}
+                {{#unless devoured}}
+                <li class="list-group-item">{{id}}. {{burger_name}}        
+                    <button data-id="{{id}}" type="button" class="btn btn-outline-secondary btn-sm devour">Devour it!</button>
+                </li>
+                
                 {{/unless}}
-                {{/each}}
-            </div>
+            {{/each}}
+            </ul>
         </div>
-        <div class="col-xs-6 text-center" class="task">
-            {{#each burger_data}}
-            {{#if this.devoured}}
-            <input class="form-control" type="text" placeholders=
-            "{{this.id}}. {{this.burger_name}}" readonly>
-            {{if}}
-            {{each}}
+            
+
+        {{!-- devoured --}}
+        <div id="devourTrue" class="col-6">
+            <ul class="list-group">
+            {{#each bugers}}
+                {{#if devoured}}
+                <li class="list-group-item list-group-item-secondary">{{id}}. {{burger_name}}</li>
+                {{/if}}
+            {{/each}}
+            </ul>
+        </div>
     </div>
-</div>
+
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 text-center enter_section">
-            <form action="/burgers/create" method="POST">
-            <input type="text" name="burger_name" class="form-control"
-            value="" id="enter_text">
-            <button type="submit" class="btn btn-primary" id="
-            text-enter-button">SUBMIT</button>
-            </form>
-            <p>Enter in a burger you would like to eat!</p>
-        </div>
-    </div>
-</div>
+<script type="text/javascript">
+    //click submit
+    $("#submit").on("click", function(event){
+        event.preventDefault();
+        var newBurger = {
+            burger_name : $("#inputBurger").val().trim()
+        };
+        
+        $.ajax("/api/burgers", {
+            method : "POST",
+            data : newBurger
+        }).then(function(){
+            console.log("added burger : ", $("#inputBurger").val().trim());
+            location.reload();
+        });
+        //clear form
+        $("#inputBurger").val("");
+    });
+    //click devour
+    $(".devour").on("click", function(event){
+        event.preventDefault();
+        console.log("clicked");
+        
+        var id = $(this).data("id");
+        var newDevoured = {
+            devoured : true
+        }
+        $.ajax("/api/burgers/"+id, {
+            method : "PUT",
+            data  : newDevoured
+        }).then(function(){
+            console.log("Devour burger id", id);
+            location.reload();
+        });
+    })
+</script>

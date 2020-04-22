@@ -1,30 +1,39 @@
-var express = require('express');
-var router = express.Router();
-var burger = require('../models/burger.js');
 
-router.get('/', function(req,res){
-    burger.all(function(burger_data){
-        console.log(burger_data);
-        res.render('index', {burger_data});
-    })
+// Express
+var express = require("express");
+var router = express.Router();
+
+// burger.js
+var burger = require("../models/burger.js");
+
+// Create the router for the app, and export the router at the end of your file.
+router.get("/", function(req, res){
+    burger.selectAll(function(data){
+        var bugerObject = {
+            bugers : data
+        }
+        console.log(bugerObject)
+        res.render("index", bugerObject);
+    });
     
 })
 
-router.put('/burgers/update', function(req,res){
-    burger.update(req.body.burger_id, function(result){
-        console.log(result);
-        res.redirect('/');
-    });
 
+router.post("/api/burgers", function(req,res){
+
+    burger.insertOne("burger_name", req.body.burger_name, function(data){
+        res.json(data);
+    })
 });
 
-router.post('/burgers/create', function(req,res){
-    burger.create(req.body.burger_name, function(result){
-        res.redirect('/');
+router.put("/api/burgers/:id", function(req, res){
+    var condition = "id = "+req.params.id;
 
+    burger.updateOne({
+        devoured: req.body.devoured
+    }, condition, function(data){
+        res.json(data);
     })
-})
+});
 
 module.exports = router;
-
-
