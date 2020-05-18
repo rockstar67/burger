@@ -22,4 +22,4 @@ Backend: Node, Express, MySQL
 
 * Front end: HTML5, CSS3, Bootstrap4, Handlebars
 * Backend: Node, Express, MySQL
->>>>>>> b199f6c5095729267a40fe5e60b6fa84cf2a9b7d
+
