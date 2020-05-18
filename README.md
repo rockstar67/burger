@@ -15,7 +15,7 @@ Backend: Node, Express, MySQL
 =======
 # burger
 
-* Portfolio:  https://github.com/rockstar67/burger.git
+* Portfolio:  https://rockstar67.github.io/updated-portfolio-page/
 * Heroku:     https://immense-dawn-18430.herokuapp.com/
 
 # Technologies Used
