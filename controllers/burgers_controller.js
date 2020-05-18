@@ -9,11 +9,11 @@ var burger = require("../models/burger.js");
 // Create the router for the app, and export the router at the end of your file.
 router.get("/", function(req, res){
     burger.selectAll(function(data){
-        var bugerObject = {
-            bugers : data
+        var burgerObject = {
+            burgers : data
         }
-        console.log(bugerObject)
-        res.render("index", bugerObject);
+        console.log(burgerObject)
+        res.render("index", burgerObject);
     });
     
 })

@@ -18,7 +18,7 @@
     <div class="row">
         <div id="devourFalse" class="col-6">
             <ul class="list-group">
-            {{#each bugers}}
+            {{#each burgers}}
                 {{#unless devoured}}
                 <li class="list-group-item">{{id}}. {{burger_name}}        
                     <button data-id="{{id}}" type="button" class="btn btn-outline-secondary btn-sm devour">Devour it!</button>
@@ -33,7 +33,7 @@
         {{!-- devoured --}}
         <div id="devourTrue" class="col-6">
             <ul class="list-group">
-            {{#each bugers}}
+            {{#each burgers}}
                 {{#if devoured}}
                 <li class="list-group-item list-group-item-secondary">{{id}}. {{burger_name}}</li>
                 {{/if}}
